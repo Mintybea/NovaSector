@@ -152,7 +152,7 @@
 			if("No")
 				return
 			if("Maybe")
-				playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
+				playsound(src, 'sound/machines/buzz/buzz-sigh.ogg', 50, FALSE)
 				audible_message(span_warning("The [src] buzzes!"))
 				return
 
@@ -193,6 +193,16 @@
 	button_icon = 'modular_nova/master_files/icons/donator/obj/custom.dmi'
 	button_icon_state = "drawingtablet"
 
+//Donation reward for Thedragmeme
+/obj/item/bouquet/stellar
+	name = "stellar bouquet"
+	desc = "An elaborate mix of flowers that shimmer delicately in the light. Topped with a silver moon."
+	icon_state = "starbouquet"
+	inhand_icon_state = "starbouquet"
+	icon = 'modular_nova/master_files/icons/donator/obj/custom.dmi'
+	lefthand_file = 'modular_nova/master_files/icons/donator/mob/inhands/donator_left.dmi'
+	righthand_file = 'modular_nova/master_files/icons/donator/mob/inhands/donator_right.dmi'
+
 // Donation reward for Thedragmeme
 /obj/item/clothing/neck/padded
 	name = "feathered serenity cloak"
@@ -203,12 +213,14 @@
 	righthand_file = 'modular_nova/master_files/icons/donator/mob/inhands/donator_right.dmi'
 	icon_state = "paddedscarf"
 	inhand_icon_state = "paddedscarf"
+	/// The typepath of the hood that gets created
+	var/hood_type = /obj/item/clothing/head/hooded/padded
 
 /obj/item/clothing/neck/padded/Initialize(mapload)
 	. = ..()
 	AddComponent(\
 		/datum/component/toggle_attached_clothing,\
-		deployable_type = /obj/item/clothing/head/hooded/padded,\
+		deployable_type = hood_type,\
 		equipped_slot = ITEM_SLOT_HEAD,\
 		action_name = "Toggle Hood",\
 		on_deployed = CALLBACK(src, PROC_REF(on_deployed)),\
@@ -226,6 +238,18 @@
 	icon = 'modular_nova/master_files/icons/donator/obj/clothing/cloaks.dmi'
 	clothing_flags = SNUG_FIT
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
+
+//Donation reward for Thedragmeme, gift for ActualVanguard
+/obj/item/clothing/neck/padded/security
+	name = "vanguard cloak"
+	desc = "A meticulously handcrafted cloak that is lined with subtle pockets filled with feathers and down. Oddly enough, you always feel comfortable regardless of the weather. Even odder, there is an ever so faint scent of wet rock on the interior of the cloak."
+	icon_state = "paddedsec"
+	inhand_icon_state = "paddedsec"
+	hood_type = /obj/item/clothing/head/hooded/padded/security
+
+/obj/item/clothing/head/hooded/padded/security
+	name = "vanguard cloak hood"
+	icon_state = "paddedsechood"
 
 // Donation reward for Thedragmeme
 /obj/item/clothing/under/padded
@@ -273,6 +297,7 @@
 	desc = "A meticulously handcrafted cloak that is lined with subtle pockets filled with feathers and down. Its design matches common styles from the followers of Univitarium."
 	icon_state = "paddedscarfalt"
 	inhand_icon_state = "paddedscarfalt"
+	hood_type = /obj/item/clothing/head/hooded/padded/alt
 
 /obj/item/clothing/head/hooded/padded/alt
 	name = "feathered serenity hood"
@@ -574,7 +599,7 @@
 	var/goggles = FALSE
 
 /obj/item/clothing/head/avipilot/proc/adjust_goggles(mob/living/carbon/user)
-	if(user?.incapacitated())
+	if(user?.incapacitated)
 		return
 	if(goggles)
 		icon_state = "avipilotup"
@@ -1038,7 +1063,7 @@
 /obj/item/clothing/mask/gas/psycho_malice/proc/adjust_mask(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
-	if(!user.incapacitated())
+	if(!user.incapacitated)
 		var/is_worn = user.wear_mask == src
 		wear_hair_over = !wear_hair_over
 		if(wear_hair_over)
@@ -1972,22 +1997,22 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 //  Donator reward Smol42
 
 /obj/item/clothing/neck/trenchcoat
-	name = "Graceful Trenchcoat"
+	name = "Secure Trenchcoat"
 	icon = 'modular_nova/master_files/icons/donator/obj/clothing/cloaks.dmi'
 	icon_state = "trenchcoat"
 	worn_icon = 'modular_nova/master_files/icons/donator/mob/clothing/neck.dmi'
 	body_parts_covered = CHEST|GROIN|LEGS|ARMS
 	uses_advanced_reskins = TRUE
 	unique_reskin = list(
-		"White" = list(
+		"Snow" = list(
 			RESKIN_ICON_STATE = "trenchcoat_white",
 			RESKIN_WORN_ICON_STATE = "trenchcoat_white"
 		),
-		"Tin variant" = list(
+		"Tin" = list(
 			RESKIN_ICON_STATE = "trenchcoat_tin",
 			RESKIN_WORN_ICON_STATE = "trenchcoat_tin"
 		),
-		"Blue variant" = list(
+		"Blue" = list(
 			RESKIN_ICON_STATE = "trenchcoat_blue",
 			RESKIN_WORN_ICON_STATE = "trenchcoat_blue"
 		)
@@ -2171,3 +2196,29 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/poster/contraband/korpstech, 32)
 	flags_1 = IS_PLAYER_COLORABLE_1
 	supports_variations_flags = NONE
 	body_parts_covered = CHEST|ARM_RIGHT|HAND_RIGHT|GROIN
+
+/obj/item/clothing/under/costume/shendyt
+	name = "shendyt"
+	desc = "Traditional clothing straight from Iaret's home planet. Made from a cotton that's quite effective at insulating against outside temperatures, they have the only disadvantage of being fairly poorly covering.\
+	<br> Inspired by an ancient culture of old Earth, it's obvious that some modifications were made to the original model. Nevertheless, their bearer wears them with pride. "
+	icon = 'modular_nova/master_files/icons/donator/obj/clothing/uniform.dmi'
+	worn_icon = 'modular_nova/master_files/icons/donator/mob/clothing/uniform.dmi'
+	icon_state = "shendyt"
+	inhand_icon_state = "labcoat"
+	can_adjust = FALSE
+	supports_variations_flags = NONE
+	body_parts_covered = CHEST|GROIN
+
+/obj/item/clothing/under/costume/shendyt/Initialize(mapload)
+	. = ..()
+	var/obj/item/clothing/accessory/bracelets/costume_accessory = new(src)
+	attach_accessory(costume_accessory)
+
+/obj/item/clothing/accessory/bracelets
+	name = "golden bracelets"
+	desc = "An assortment of bracelets, necklaces and other small gold (if not precious metal) jewels. Most often worn as a complement to a shendyt, \
+	it is possible to come across their owner ringing like a chime if they should happen to lose this garment."
+	icon_state = "bracelets"
+	attachment_slot = NONE
+	icon = 'modular_nova/master_files/icons/donator/obj/custom.dmi'
+	worn_icon = 'modular_nova/master_files/icons/donator/mob/clothing/custom_w.dmi'

@@ -13,6 +13,11 @@
 	item_path = /obj/item/canvas/drawingtablet
 	donator_only = TRUE
 
+/datum/loadout_item/pocket_items/stellar_bouquet
+	name = "Stellar Bouquet"
+	item_path = /obj/item/bouquet/stellar
+	ckeywhitelist = list("thedragmeme")
+
 /datum/loadout_item/under/jumpsuit/paddedunder
 	name = "Feathered Serenity Suit"
 	item_path = /obj/item/clothing/under/padded
@@ -32,6 +37,11 @@
 	name = "Feathered Serenity Cloak"
 	item_path = /obj/item/clothing/neck/padded/alt
 	ckeywhitelist = list("snailomi")
+
+/datum/loadout_item/neck/padded/security
+	name = "Vanguard Cloak"
+	item_path = /obj/item/clothing/neck/padded/security
+	ckeywhitelist = list("actualvanguard")
 
 /datum/loadout_item/gloves/padded
 	name = "Serenity Gloves"
@@ -785,9 +795,9 @@
 	ckeywhitelist = list("dtfe")
 
 /datum/loadout_item/neck/trenchcoat
-	name = "Graceful Trenchcoat"
+	name = "Secure Trenchcoat"
 	item_path = /obj/item/clothing/neck/trenchcoat
-	ckeywhitelist = list("Smol42", "Awers855")
+	ckeywhitelist = list("Smol42")
 
 /datum/loadout_item/under/jumpsuit/old_qm_jumpskirt
 	name = "Old Quartermaster's Jumpskirt"
@@ -860,3 +870,13 @@
 	name = "One-Sleeved Leotard"
 	item_path = /obj/item/clothing/under/pants/half_leotard_cosmiclaer
 	ckeywhitelist = list("cosmiclaer")
+
+/datum/loadout_item/under/jumpsuit/shendyt
+	name = "Shendyt"
+	item_path = /obj/item/clothing/under/costume/shendyt
+	ckeywhitelist = list("hyperhazel")
+
+/datum/loadout_item/pocket_items/jumperbox
+	name = "Jumper Conversation Kit Box"
+	item_path = /obj/item/mod/skin_applier/jumper
+	ckeywhitelist = list("bonkaitheroris")
